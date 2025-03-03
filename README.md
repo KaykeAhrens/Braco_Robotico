@@ -53,3 +53,62 @@ E 1 S 20 5 # move para a esquerda, 1 casa e solta o pacote no topo. Gastou 5 de 
 Ao mover uma casa, há o custo de 1 de energia. Porém, mover mais de 2 casas, custa 75% do movimento. Por exemplo: 4 casas, custa 3 de energia. A cada 10kg, o custo aumenta em 1 energia, assim uma caixa de 20 kg, custa 2.
 
 Exemplo: Mover 2 casas uma caixa de 40kg: 2*0,75 + 40/10 = 5,5 de energia
+
+## Modelagem do problema e conclusões
+
+Fazer slides explicando:
+
+- Modelagem de estados e ações
+- Função sucessora dos estados e as ações possíveis
+- Checagem do objetivo. Explicar como é o algoritmo de verificação de estado final
+- Função Heurística: explicar a matemática e como a conta é feita no slide. (Não mostrar apenas o código e não explicar o que ela é)
+- Função Custo: explicar a matemática e como a conta é feita no slide. (Não mostrar apenas o código e não explicar o que ela é)
+- Função A*: Heurística e Custo
+
+Mostrar um exemplo do algoritmo com situação inicial e final e quais seus passos e quantos passos para:
+
+- Dijkstra
+- Ganancioso
+- A*
+
+Explicar a teoria de cada algoritmo. Interpretar como cada algoritmo funciona sobre o problema: por quê alguns demoram mais? por quê outros pecorrem mais estados? Qual o algoritmo ideal para o problema dependendo da configuração inicial?
+
+## Código
+
+- Apresentação do modelo na tela (3.0)
+    - Como mostrar a disposição das caixas e dos movimentos do braço (estados)
+    - Mostrar o caminho ótimo (ações)
+- Implementação
+
+Não é necessário o uso de bibliotecas gráficas, apenas quero o print do estado em alguma representação que faça sentido de acordo com a modelagem.
+
+Mostra quantos estados são visitados usando usamos as configurações diferentes nos algoritmos:
+
+- Greedy
+- Algoritmo de Dijkstra
+- A*
+
+Desafio: 2 pontos extras
+
+- O tamanho lateral para a direita ser configurável
+- Quantidade de caixas e pesos ser sorteáveis
+
+**Não será permitido** de uso de bibliotecas de software de Inteligência Artificial, usar apenas a biblioteca padrão da linguagem ou bibliotecas auxiliares para Interface do usuário ou para tratamento de dados como NumPy ou Pandas.
+
+O que será avaliado:
+
+- Explicação da lógica do problema
+- Explicação de como pensou o espaço de estados
+- Explicações das funções
+- Demonstração dos exemplos
+- Criatividade
+
+### Slides
+
+Deverá ter slides explicando o problema e mostrando 
+
+- A modelagem
+- A teoria envolvida e as escolhas
+- Explicação básica do código e funções
+
+A não entrega resultará em redução de 3 pontos.
