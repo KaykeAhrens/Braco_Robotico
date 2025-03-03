@@ -67,7 +67,7 @@ class BracoRobotico:
         self.custo_direita = 0.0
         self.custo_esquerda = 0.0 # É necessário zerar os custos a cada nova geração para que não acumulem.
 
-        expansoes = [self._direita, self._esquerda]
+        expansoes = [self.acao_direita, self.acao_esquerda]
         random.shuffle(expansoes)
 
         for expansao in expansoes:
@@ -76,38 +76,37 @@ class BracoRobotico:
 
         return nos_sucessores
 
-    def _direita(self, posicao, no):
+    def acao_direita(self, posicao, no):
 
         sucessor = np.copy(no.estado)
-        self.procurar_caixa(sucessor) # atualizar as posições das caixas
+        self.procurar_caixa(sucessor)
+        casas_direita = [tupla[0] for tupla in self.caixas if tupla[0] > 8] 
+        if casas_direita:
 
-        valores_direita = [tupla[0] for tupla in self.caixas if tupla[0] > 8] # olha para valores depois do espaço reservado para empilhamento
-        if valores_direita:
-
-            random.shuffle(valores_direita)
-            posicao_nova_caixa = valores_direita[0]
-            self.custo_direita += self.pegar_caixa(sucessor, posicao_nova_caixa)
+            random.shuffle(casas_direita)
+            pos_caixa_nova = casas_direita[0]
+            self.custo_direita += self.pegar_caixa(sucessor, pos_caixa_nova)
 
             self.colocar_caixa(sucessor)
 
-            return No(sucessor, no, f"""{no.estado[posicao_nova_caixa]}➡️""")
+            return No(sucessor, no, f"""{no.estado[pos_caixa_nova]}➡️""")
         else:
             None
 
-    def _esquerda(self, posicao, no):
+    def acao_esquerda(self, posicao, no):
 
         sucessor = np.copy(no.estado)
         self.procurar_caixa(sucessor)
 
-        valores_esquerda = [tupla[0] for tupla in self.caixas if tupla[0] < 9] # olha para os valores reservados para empilhamento
-        if valores_esquerda:
+        casas_esquerda = [tupla[0] for tupla in self.caixas if tupla[0] < 9] 
+        if casas_esquerda:
 
-            posicao_nova_caixa = max(valores_esquerda)
-            self.custo_esquerda += self.pegar_caixa(sucessor, posicao_nova_caixa)
+            pos_caixa_nova = max(casas_esquerda)
+            self.custo_esquerda += self.pegar_caixa(sucessor, pos_caixa_nova)
 
             self.desempilhar_caixa(sucessor)
 
-            return No(sucessor, no, f"""{no.estado[posicao_nova_caixa]}⬅️""")
+            return No(sucessor, no, f"""{no.estado[pos_caixa_nova]}⬅️""")
         else:
             None
 
@@ -115,8 +114,8 @@ class BracoRobotico:
 
         custo = 0.0
 
-        custo += self.calculo_custo(no_sucessor, nova_posicao)
-        custo += no_sucessor[nova_posicao] / 10  # custo do peso da caixa
+        custo += self.valor_custo(no_sucessor, nova_posicao)
+        custo += no_sucessor[nova_posicao] / 10 
 
         no_sucessor[0] = nova_posicao
         no_sucessor[1], no_sucessor[nova_posicao] = no_sucessor[nova_posicao], no_sucessor[1]
@@ -127,11 +126,11 @@ class BracoRobotico:
         posicao_livre = None
 
         for i in range(3, 9):
-            if no_sucessor[i] == 0:  # procura o próximo valor livre pra empilhar
+            if no_sucessor[i] == 0: 
                 posicao_livre = i
                 break
 
-        self.custo_direita += self.calculo_custo(no_sucessor, posicao_livre)
+        self.custo_direita += self.valor_custo(no_sucessor, posicao_livre)
 
         no_sucessor[0] = posicao_livre
 
@@ -145,13 +144,13 @@ class BracoRobotico:
                 posicao_livre = i
                 break
 
-        self.custo_esquerda += self.calculo_custo(no_sucessor, posicao_livre)
+        self.custo_esquerda += self.valor_custo(no_sucessor, posicao_livre)
 
         no_sucessor[0] = posicao_livre
 
         no_sucessor[posicao_livre], no_sucessor[1] = no_sucessor[1], no_sucessor[posicao_livre]
 
-    def calculo_custo(self, pos_atual, pos_meta):  # calcula o custo do movimento
+    def valor_custo(self, pos_atual, pos_meta):  # calcula o custo do movimento
         if abs((pos_atual[0] // 3) - (pos_meta // 3)) == 1: 
             return 1.0  # retorna custo 1 se o braço só andar uma posição em relação a esteira
         else:
