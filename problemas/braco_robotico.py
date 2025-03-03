@@ -140,7 +140,7 @@ class BracoRobotico:
         posicao_livre = None
 
         for i in range(9, 31, 3):
-            if no_sucessor[i] == 0:  # procura o espaço vazio na esteira mais proximo à direita para deixar a caixa
+            if no_sucessor[i] == 0: 
                 posicao_livre = i
                 break
 
@@ -150,21 +150,21 @@ class BracoRobotico:
 
         no_sucessor[posicao_livre], no_sucessor[1] = no_sucessor[1], no_sucessor[posicao_livre]
 
-    def valor_custo(self, pos_atual, pos_meta):  # calcula o custo do movimento
+    def valor_custo(self, pos_atual, pos_meta):  
         if abs((pos_atual[0] // 3) - (pos_meta // 3)) == 1: 
-            return 1.0  # retorna custo 1 se o braço só andar uma posição em relação a esteira
+            return 1.0  
         else:
-            return abs((pos_atual[0] // 3) - (pos_meta // 3)) * 0.75  # retorna a quantidade de posições de ESTEIRA que ele andou * 0,75
+            return abs((pos_atual[0] // 3) - (pos_meta // 3)) * 0.75 
 
     def custo(self, no, no_sucessor):
 
         custo_total = 0.0
 
-        if no_sucessor.estado[0] > 8:  # se o braço estiver DEPOIS das pilhas reservadas para empilhamento, significa que ele DESEMPILHOU uma caixa, ou seja, se atribui o custo do movimento para esquerda.
+        if no_sucessor.estado[0] > 8: 
             custo_total = self.custo_esquerda
             self.custo_esquerda = 0.0
         else:
-            custo_total = self.custo_direita  # se o braço estiver DENTRO das pilhas reservadas para empilhamento, significa que ele acabou de EMPILHAR uma caixa, ou seja, se atribui o custo do movimento para direita.
+            custo_total = self.custo_direita 
             self.custo_direita = 0.0
 
         return custo_total
@@ -185,7 +185,6 @@ class BracoRobotico:
 
         return soma
 
-    # Distância de Manhattan: d = |xi-xj| + |yi-yj|
     def _distancia_manhattan(self, valor, estado, i, j):
       for k in range(len(estado)):
         for h in range(len(estado[k])):
