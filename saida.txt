@@ -1,0 +1,31 @@
+30 20 10
+7 5 2
+1 0 0
+0 0 0
+
+# Movimentos do braco
+E 2 P 2 # move E 2 casas. Gastou 2 de energia
+E 0 S 30 3 # soltou 30kg. Gastou 3 de energia
+D 0 P 0 # move D 0 casas. Gastou 0 de energia
+D 0 S 20 2 # soltou 20kg. Gastou 2 de energia
+D 0 P 0 # move D 0 casas. Gastou 0 de energia
+D 0 S 10 1 # soltou 10kg. Gastou 1 de energia
+D 1 P 1 # move D 1 casas. Gastou 1 de energia
+D 0 S 7 1 # soltou 7kg. Gastou 1 de energia
+D 0 P 0 # move D 0 casas. Gastou 0 de energia
+D 0 S 5 1 # soltou 5kg. Gastou 1 de energia
+D 0 P 0 # move D 0 casas. Gastou 0 de energia
+D 0 S 2 1 # soltou 2kg. Gastou 1 de energia
+D 1 P 1 # move D 1 casas. Gastou 1 de energia
+D 0 S 1 1 # soltou 1kg. Gastou 1 de energia
+D 0 P 0 # move D 0 casas. Gastou 0 de energia
+D 0 S 0 0 # soltou 0kg. Gastou 0 de energia
+D 0 P 0 # move D 0 casas. Gastou 0 de energia
+D 0 S 0 0 # soltou 0kg. Gastou 0 de energia
+D 1 P 1 # move D 1 casas. Gastou 1 de energia
+D 0 S 0 0 # soltou 0kg. Gastou 0 de energia
+D 0 P 0 # move D 0 casas. Gastou 0 de energia
+D 0 S 0 0 # soltou 0kg. Gastou 0 de energia
+D 0 P 0 # move D 0 casas. Gastou 0 de energia
+D 0 S 0 0 # soltou 0kg. Gastou 0 de energia
+# Energia total gasta: 15
